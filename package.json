@@ -1,0 +1,20 @@
+{
+  "name": "rebut.me",
+  "version": "0.0.1",
+  "description": "Launch an attack against the [FORUM]",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "jniles",
+  "license": "GPLv2",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "compression": "^1.4.3",
+    "express": "^4.12.3",
+    "lowdb": "^0.7.2",
+    "morgan": "^1.5.2",
+    "sendgrid": "^1.6.1"
+  }
+}

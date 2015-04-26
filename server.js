@@ -80,5 +80,8 @@ app.post('/compose', function (req, res, next) {
   res.redirect('/success.html');
 });
 
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ipAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
 // configure application port
-app.listen(80, console.log('App running on port 80'));
+app.listen(port, ipAddress, console.log('App running on port', port, 'and ip', ipAddress));

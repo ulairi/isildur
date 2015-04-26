@@ -1,6 +1,9 @@
 // server.js
+
+var DATA = process.env.OPENSHIFT_DATA_DIR || './data/';
+
 var express     = require('express'),
-    cfg         = require('./data/config.json'),
+    cfg         = require(DATA +'config.json'),
     morgan      = require('morgan'),
     compression = require('compression'),
     bodyParser  = require('body-parser'),
@@ -22,7 +25,7 @@ low.mixin({
   }
 });
 
-var db = low('data/db.json');
+var db = low(DATA + 'db.json');
 
 function handler(err, json) {
   if (err) { return console.error(err); }
@@ -45,7 +48,7 @@ function schedule(id, duration) {
 
     // send an email
     sg.send({
-      to      : 'isildur@maildrop.cc',
+      to      : cfg.target,
       from    : addr,
       fromname : 'God',
       subject : record.data.subject,

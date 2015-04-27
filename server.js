@@ -15,7 +15,7 @@ var express     = require('express'),
 app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended : false }));
-app.use(express.static(__dirname + '/static', { maxAge: 86400000 }));
+app.use(express.static(__dirname + '/static', { maxAge: 3000 }));
 
 // return a random record from the database
 low.mixin({
@@ -48,12 +48,12 @@ function schedule(id, duration) {
 
     // send an email
     sg.send({
-      to      : cfg.params.target,
-      from    : addr,
+      to       : cfg.params.target,
+      from     : addr,
       fromname : cfg.params.alias,
-      subject : record.data.subject,
-      text    : record.data.body,
-      replyto : cfg.params.reply
+      subject  : record.data.subject,
+      text     : record.data.body,
+      replyto  : cfg.params.reply
     }, handler);
   }, 30*sec);
 

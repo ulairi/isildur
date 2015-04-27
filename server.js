@@ -48,7 +48,7 @@ function schedule(id, duration) {
 
     // send an email
     sg.send({
-      to      : cfg.target,
+      to      : cfg.params.target,
       from    : addr,
       fromname : cfg.params.alias,
       subject : record.data.subject,

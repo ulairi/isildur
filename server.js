@@ -1,6 +1,6 @@
 // server.js
 
-var DIR = process.env.OPENSHIFT_DIR_DIR || './data/';
+var DIR = process.env.OPENSHIFT_DATA_DIR || './data/';
 
 var express     = require('express'),
     cfg         = require(DIR +'config.json'),

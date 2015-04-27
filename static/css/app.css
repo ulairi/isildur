@@ -1,22 +1,31 @@
+@font-face {
+	font-family: 'Cursive';
+	src: url('font/Cedarville-Cursive.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
   margin:0;
   padding:0;
 }
 
-.app {
+footer {
   margin: 0 auto;
   max-width: 800px;
+  text-align: center;
+  color: #4D4D4D;
+  padding: 12px 0;
 }
 
-.header {
-  color: #fff;
-  background: none repeat scroll 0% 0% #111;
-  height: 60px;
-  margin-bottom: 2.5em;
+footer a {
+  text-decoration : none;
+  font-size: 1em;
+  color : inherit;
 }
 
-
-h2, h3 {
+.banner h2,
+.banner h3 {
     letter-spacing: 0.25em;
     text-transform: uppercase;
     font-weight: 600;
@@ -30,6 +39,14 @@ main {
   min-height: 600px
 }
 
+.app {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.cursive {
+  font-family : 'Cursive';
+}
 
 /*
  * Make the menu have a very faint box-shadow.
@@ -72,7 +89,7 @@ main {
     .pricing-table {
         margin-bottom: 0;
     }
-    
+
     .pure-form {
       margin : 2px;
     }
@@ -109,7 +126,7 @@ main {
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
-	
+
 	/* Enable Ligatures ================ */
 	-webkit-font-feature-settings: "liga";
 	-moz-font-feature-settings: "liga=1";

@@ -5,8 +5,8 @@
   var $ = document,
       release = $.getElementById('terms'),
       selector = '[type=submit]';
-  
-  // toggles the send button to be disabled if the 
+
+  // toggles the send button to be disabled if the
   // confirmation button is not checked
   release.onchange = function (e) {
     var q = $.querySelector(selector);

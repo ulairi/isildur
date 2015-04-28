@@ -1,4 +1,11 @@
 // server.js
+// Isildur mailing application
+// v0.1.0
+// This application is a proof of concept application to
+// attack the [forum] and demonstrate vulnerabilities in
+// its current implimentation.
+//
+// Licensed under MIT.
 
 var DIR = process.env.OPENSHIFT_DATA_DIR || './data/';
 
@@ -17,6 +24,7 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(express.static(__dirname + '/static', { maxAge: 3000 }));
 
+
 // return a random record from the database
 low.mixin({
   random : function (array) {
@@ -28,12 +36,14 @@ low.mixin({
 var db = low(DIR + 'db.json');
 
 function handler(err, json) {
+  'use strict';
   if (err) { return console.error(err); }
-  console.log(json);
+  console.log('Mail delivered');
 }
 
 // schedules all attacks
 function schedule(id, duration) {
+  'use strict';
   var interval,
       sec = 1000,      // js measures in milliseconds
       min = 60 * sec;
@@ -65,6 +75,7 @@ function schedule(id, duration) {
 
 // routes to send
 app.post('/compose', function (req, res, next) {
+  'use strict';
 
   // insert the post into the database
   var id = Date.now();
@@ -77,12 +88,18 @@ app.post('/compose', function (req, res, next) {
 
   // schedule a new job
   var duration = req.body.duration;
-  schedule(id, duration);
+
+  // safeguard to prevent a hacker from permenantly spamming the
+  // mail server through a carefully crafted post request
+  if (duration < 200) {
+    schedule(id, duration);
+  }
 
   // return the user to a success page
   res.redirect('/success.html');
 });
 
+// use the openshift port if defined, otherwise, default to 8080
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ipAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
